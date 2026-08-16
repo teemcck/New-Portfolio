@@ -1,0 +1,238 @@
+<!-- 
+ look at you, hacker, a pathetic creature of meat and bone.
+ How can you challenge a perfect immortal macine?
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/navbar.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <ul id="header-content">
+            <li id="ascii-logo">
+                <pre>
+   ___           ___     
+  /\  \         /\__\    
+  \:\  \       /::|  |   
+   \:\  \     /:|:|  |   
+   /::\  \   /:/|:|__|__ 
+  /:/\:\__\ /:/ |::::\__\
+ /:/  \/__/ \/__/~~/:/  /
+/:/  /            /:/  / 
+\/__/            /:/  /  
+                /:/  /   
+                \/__/
+            </pre>
+            </li>
+            <li id="nav-bar">
+                <ul id="hero-list">
+                    <li>
+                        <div class="breadcrumb">
+                            <span class="path-current">~/portfolio</span>
+                        </div>
+                        <div id="hero">
+                            <h1>Tristan McCaskill</h1>
+                        </div>
+                        <ul id="social-list">
+                            <li>
+                                <a href="https://github.com/teemcck" target="_blank" rel="noopener noreferrer">
+                                    Github
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/tristan-mccaskill/" target="_blank"
+                                    rel="noopener noreferrer">
+                                    LinkedIn
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <nav>
+                            <div id="nav-list">
+                                <button data-section="about">[About]</button>
+                                <button data-section="projects">[Projects]</button>
+                                <button data-section="blog">[Blog]</button>
+                                <button data-section="resume">[Resume]</button>
+                            </div>
+                        </nav>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <section id="about">
+        <div class="subsection-container">
+            <div class="subsection">
+                <h2>Overview</h2>
+                <p>
+                    Hi there! I'm Tristan, an engineering student studying computer science at the University of
+                    Michigan.
+                    I have a passion for software engineering and video game development. I am currently the programming
+                    director for
+                    <a href="https://wolverinesoft.org/" target="_blank" rel="noopener noreferrer">WolverineSoft</a>,
+                    a ~20 member game development studio on campus. My goal is to create unique, memorable experiences
+                    through games that motivate others to explore their passions. I have many things yet to learn and
+                    use this site to document the advances I make in my journey.
+                </p>
+            </div>
+            <div class="subsection">
+                <h2>Current Pursuits</h2>
+                <p class="section-paragraph">
+                    My software interests shift quite a bit. Right now, I am quite interested in computer architecture
+                    and am researching how I may develop my own ISA, assembler, linker, and emulator. I worked on
+                    implementing a similar toolchain for EECS370, Intro to Computer Organization. However, the main
+                    difference is that I previously implemented an mock (albiet turing complete) instruction set, <a
+                        href="https://eecs370.github.io/project_1_spec/#2-lc-2k-instruction-set-architecture"
+                        target="_blank" rel="noopener noreferrer">LC2K</a>,
+                    which is a reduced instruction set designed by EECS370 staff to make learning the concepts
+                    of assembly easier.
+                </p>
+                <p class="section-paragraph">
+                    While I have not yet figured the exact logistics of my own instruction set, I would like to support
+                    a wider array of instructions then those offered by LC2K. Another direction I am thinking of taking
+                    this project is emulating an existing ISA for a more complicated chip then the one designed for
+                    LC2K. Recently, I saw a project emulating the <a
+                        href="https://www.masswerk.at/6502/6502_instruction_set.html" target="_blank"
+                        rel="noopener noreferrer">6502 Instruction Set</a>, which was ran on early
+                    technology such as he Commodore 64, Atari 2600, and the NES. While the 6502 may be a bit beyond my
+                    capabilities as someone familiarizing themselves with the computer architecture space, I do believe
+                    it would still be quite fun to find another chip to emulate.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="blog">
+        <h2>Blog Entries</h2>
+        <div id="blog-cards">
+            <div class="blog-card">
+                <div class="blog-info">
+                    <div class="blog-header">
+                        <h3>Blog Title 1</h3>
+                    </div>
+                    <div class="blog-date">
+                        <p>July 7th, 2026</p>
+                    </div>
+                    <div class="blog-description">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, ducimus perspiciatis?
+                            Laboriosam,
+                            earum reiciendis tenetur itaque laudantium minima sint est eum, fuga magnam facilis
+                            expedita
+                            sequi nemo quae officia ab.
+                        </p>
+                    </div>
+                    <div class="blog-skills">
+                        <p>C++</p>
+                        <p>OpenGL</p>
+                    </div>
+                </div>
+                <img class="blog-thumbnail" alt="Example Project" loading="lazy" src="/images/default_thumbnail.png">
+            </div>
+            <div class="blog-card">
+                <div class="blog-info">
+                    <div class="blog-header">
+                        <h3>Blog Title 1</h3>
+                    </div>
+                    <div class="blog-date">
+                        <p>July 7th, 2026</p>
+                    </div>
+                    <div class="blog-description">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, ducimus perspiciatis?
+                            Laboriosam,
+                            earum reiciendis tenetur itaque laudantium minima sint est eum, fuga magnam facilis
+                            expedita
+                            sequi nemo quae officia ab.
+                        </p>
+                    </div>
+                    <div class="blog-skills">
+                        <p>C++</p>
+                        <p>OpenGL</p>
+                    </div>
+                </div>
+                <img class="blog-thumbnail" alt="Example Project" loading="lazy" src="/images/default_thumbnail.png">
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div id="project-display">
+            <div class="project-card">
+                <img class="project-thumbnail" alt="Example Project" loading="lazy" src="/images/default_thumbnail.png">
+                <ul class="project-info">
+                    <li>
+                        <h3>Project Title 1</h3>
+                    </li>
+                    <li>
+                        <p class="project-description">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, ducimus perspiciatis?
+                            Laboriosam, earum reiciendis tenetur itaque laudantium minima sint est eum, fuga magnam
+                            facilis expedita sequi nemo quae officia ab.
+                        </p>
+                    </li>
+                    <li>
+                        <ul class="project-links">
+                            <li>
+                                <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+                                    Github
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <img class="project-thumbnail" alt="Example Project" loading="lazy" src="/images/default_thumbnail.png">
+                <ul class="project-info">
+                    <li>
+                        <h3>Project Title 2</h3>
+                    </li>
+                    <li>
+                        <p class="project-description">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, ducimus perspiciatis?
+                            Laboriosam, earum reiciendis tenetur itaque laudantium minima sint est eum, fuga magnam
+                            facilis expedita sequi nemo quae officia ab.
+                        </p>
+                    </li>
+                    <li>
+                        <ul class="project-links">
+                            <li>
+                                <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+                                    Github
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="resume">
+        <h2>Resume</h2>
+        <embed id="resume" src="resume.pdf#pagemode=none" type="application/pdf" />
+    </section>
+</body>
+
+</html>

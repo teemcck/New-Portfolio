@@ -1,0 +1,171 @@
+:root{
+    --black: rgb(15, 15, 15);
+    --white: rgb(236, 236, 236);
+    --light-gray: rgb(201, 201, 201);
+    --medium-gray: rgb(132, 132, 132);
+    --gray: rgb(69, 69, 69);
+    --light-blue: rgb(125, 142, 175);
+    --font-fira: "Fira Code", monospace;
+    --radius-small: 6px;
+    --radius-medium: 12px;
+    --border-width-medium: 2px;
+    --border-width-small: 1px;
+    --body-padding: 18px;
+    --body-width: 950px;
+}
+
+html {
+    color: var(--white);
+    background-color: var(--black);
+    font-family: var(--font-fira);
+    font-size: 16px;
+    font-weight: 500
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.2;
+    width: min(var(--body-width), calc(100% - var(--body-padding) * 2));
+    margin: 82px auto 28px auto;
+}
+
+h1 {
+    font-size: 1.4rem;
+    font-weight: 650;
+    padding: 4px 0px;
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.045rem;
+    font-weight: 550;
+}
+
+a {
+    text-decoration: none;
+    color: var(--light-blue);
+}
+
+a {
+    color: var(--light-blue);
+    text-decoration: none
+}
+
+a:hover {
+    background-color: var(--white);
+    color: var(--black)
+}
+
+/* Header */
+
+header {
+    position: relative;
+    overflow: hidden
+}
+
+.breadcrumb {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+    margin-bottom: 8px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+}
+
+.path-sep {
+    margin: 0 4px;
+    color: var(--light-gray);
+}
+
+.path-current {
+    color: var(--light-gray);
+}
+
+#social-list {
+    display: flex;
+    flex-direction: row;
+    gap: 14px
+}
+
+#social-list li {
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 575;
+    height: fit-content
+}
+
+#social-list li a {
+    text-decoration: underline
+}
+
+.divider {
+    border: none;
+    height: 2px;
+    background-color: var(--white);
+    margin: 24px 0px;
+    width: 100%
+}
+
+/* Sections */
+
+#blog-body {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0px;
+    gap: 12px
+}
+
+#blog-content p {
+    font-size: 0.95rem;
+    font-weight: 450;
+    color: var(--light-gray);
+}
+
+#blog-content {
+    flex-direction: column;
+}
+
+#blog-content h3 {
+    padding-top: 14px;
+    padding-bottom: 8px;
+}
+
+#section-links {
+    list-style-position: inside;
+    list-style-type: disc;
+}
+
+#section-links li {
+    white-space: nowrap;
+}
+
+/* Desktop View */
+
+@media screen and (min-width: 712px) {
+    #section-links {
+        padding: 20px 12px;
+    }
+
+    #blog-body {
+        flex-direction: row-reverse;
+    }
+    
+    .blog-body h2 {
+        width: 80%
+    }
+
+    .blog-body p {
+        width: 80%
+    }
+}
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+
+<body>
+    <header>
+        <div class="breadcrumb">
+            <a href="/">~/portfolio</a><span class="path-sep">/</span><span class="path-current">blog</span>
+        </div>
+        <div id="hero">
+            <h1>Tristan's Blog</h1>
+        </div>
+        <ul id="social-list">
+            <li>
+                <a href="https://github.com/teemcck" target="_blank" rel="noopener noreferrer">
+                    Github
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/tristan-mccaskill/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </li>
+        </ul>
+        <hr class="divider">
+    </header>
+    <h2>Implementing Huffman Coding Compression and Decompression</h2>
+    <div id="blog-body">
+        <ul id="section-links">
+            <li><a href="">What is Huffman Coding?</a></li>
+            <li><a href="">How is this implemented?</a></li>
+            <li><a href="">Untitled Section</a></li>
+        </ul>
+        <div id="blog-content">
+            <!-- These paragraphs need to be formalized later. -->
+            <h3>What is Huffman coding?</h3>
+            <p>
+                <!-- Introduction -->
+                According to Huffman's original paper in (date), it is a
+                process we may use to abbreviate binary sequences (huffman codes) to be expanded again later.
+                The information required to reinterpret this abbreviated data is included in the "codebook,"
+                a small header excerpt bundled with compressed data. Huffman's original paper
+                included a sample algorithm which became the understanding for how the process was performed.
+                However, this process has heavily evolved over time (as things tend to do over the course 70 years).
+                This abstracted introduction to the subject was not without purpose. Huffman coding, in modern use,
+                pertains to no particular implementation. In fact, modern implementations
+                seem like frankensteined variants of Huffman's original proposed process.
+            </p>
+            <h3>How is this implemented?</h3>
+            <p>
+                In the interest of making this project modernized, yet still true to Huffman's original implementation,
+                I will implement a "canonical" Huffman coding algorithm leverging Huffman's original greedy tree merging
+                solution. Explicit details on what exactly this means, the difference between "canonical" vs. classical
+                Huffman coding, as well as code exerpts and implementation details will be provided in the upcoming
+                subsections.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
