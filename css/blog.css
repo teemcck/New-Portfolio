@@ -121,23 +121,165 @@ header {
 #blog-body {
     display: flex;
     flex-direction: column;
-    padding: 12px 0px;
-    gap: 12px
+    padding: 12px 0;
+    gap: 20px;
 }
 
-#blog-content p {
+#blog-content p,
+#blog-content ol,
+#blog-content ul {
     font-size: 0.95rem;
     font-weight: 450;
     color: var(--light-gray);
+    margin: 1rem 0;
 }
 
 #blog-content {
-    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.65;
 }
 
 #blog-content h3 {
-    padding-top: 14px;
-    padding-bottom: 8px;
+    margin: 1.25rem 0 0.75rem;
+    line-height: 1.4;
+    scroll-margin-top: 1.5rem;
+}
+
+#blog-content h3:first-child {
+    margin-top: 0;
+}
+
+#blog-content ol,
+#blog-content ul {
+    border-left: 4px solid var(--light-blue);
+    border-radius: 8px 0 0 8px;
+    padding: 0.25rem 0 0.25rem 2rem;
+}
+
+#blog-content ol {
+    list-style-type: decimal;
+}
+
+#blog-content ul {
+    list-style-type: disc;
+}
+
+#blog-content li + li {
+    margin-top: 0.5rem;
+}
+
+/* Blue-based palette with muted syntax accents for Prism code blocks */
+#blog-content pre {
+    margin: 1rem 0;
+    padding: 1rem;
+    overflow-x: auto;
+    border: 1px solid #2d3c50;
+    border-radius: 2px;
+    background-color: #16191e;
+    color: #ced9e8;
+    font-family: var(--font-fira);
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    tab-size: 4;
+    white-space: pre;
+}
+
+#blog-content pre code {
+    font: inherit;
+}
+
+#blog-content pre.line-numbers {
+    padding-left: 3.8em;
+}
+
+#blog-content .line-numbers-rows {
+    border-right-color: #2d3c50;
+}
+
+#blog-content .line-numbers-rows > span::before {
+    color: #8396ae;
+}
+
+#blog-content pre:focus-visible {
+    outline: 2px solid var(--light-blue);
+    outline-offset: 3px;
+}
+
+code[class*="language-"] .token.comment {
+    color: #8396ae;
+}
+
+code[class*="language-"] .token.keyword,
+code[class*="language-"] .token.property {
+    color: #82b4f4;
+}
+
+code[class*="language-"] .token.macro,
+code[class*="language-"] .token.directive {
+    color: #a1b5df;
+}
+
+code[class*="language-"] .token.keyword-type,
+code[class*="language-"] .token.class-name {
+    color: #a6c8ed;
+}
+
+code[class*="language-"] .token.string,
+code[class*="language-"] .token.char {
+    color: #afc6a0;
+}
+
+code[class*="language-"] .token.function {
+    color: #d6bf94;
+}
+
+code[class*="language-"] .token.number,
+code[class*="language-"] .token.boolean,
+code[class*="language-"] .token.constant {
+    color: #c5addb;
+}
+
+#section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--black);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#contents-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    width: 100%;
+    font: inherit;
+    color: var(--light-gray);
+}
+
+#contents-toggle[hidden] {
+    display: none;
+}
+
+#contents-toggle:focus-visible {
+    outline: 2px solid var(--light-blue);
+    outline-offset: 3px;
+}
+
+.contents-action {
+    color: var(--light-blue);
+    font-size: 0.85rem;
+}
+
+#contents-toggle:hover .contents-action {
+    text-decoration: underline;
+}
+
+#section-nav.is-collapsed #section-links {
+    display: none;
 }
 
 #section-links {
@@ -146,18 +288,47 @@ header {
 }
 
 #section-links li {
-    white-space: nowrap;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+#section-links li + li {
+    margin-top: 0.5rem;
 }
 
 /* Desktop View */
 
-@media screen and (min-width: 712px) {
-    #section-links {
-        padding: 20px 12px;
+@media screen and (max-width: 799px) {
+    #blog-content h3 {
+        scroll-margin-top: 60px;
+    }
+
+    #section-nav:not(.is-collapsed) #section-links {
+        padding-bottom: 12px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    #section-nav {
+        flex: 0 0 220px;
+        padding: 0 12px;
+        position: sticky;
+        top: 16px;
+        align-self: flex-start;
+    }
+
+    #contents-toggle {
+        display: none;
+    }
+
+    #section-nav.is-collapsed #section-links {
+        display: block;
     }
 
     #blog-body {
         flex-direction: row-reverse;
+        padding-top: 26px;
+        gap: 12px;
     }
     
     .blog-body h2 {
@@ -168,4 +339,3 @@ header {
         width: 80%
     }
 }
-

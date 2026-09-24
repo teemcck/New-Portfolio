@@ -1,23 +1,23 @@
-const navlist = document.getElementById("nav-list");
+const navList = document.getElementById("nav-list");
 const sections = document.querySelectorAll("section");
 
-ShowSection("about");
+showSection("about");
 
-navlist.addEventListener("click", e =>
+navList.addEventListener("click", e =>
 {
     const button = e.target.closest("button");
     if (!button) return;
 
-    ShowSection(button.dataset.section);
+    showSection(button.dataset.section);
 });
 
-function ShowSection(id)
+function showSection(id)
 {
     sections.forEach(section =>
         section.style.display = section.id === id ? "block" : "none"
     );
 
-    [...navlist.children].forEach(button =>
+    [...navList.children].forEach(button =>
         button.classList.toggle(
             "active",
             button.dataset.section === id

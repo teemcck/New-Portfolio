@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <script defer src="js/blog-nav.js"></script>
+    <!-- Prism: core, C-like dependency, and C grammar. -->
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-clike.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-c.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <!-- Latex Support -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\(', right: '\\)', display: false}
+        ]
+        });"></script>
+</head>
+
+<body>
+    <header>
+        <div class="breadcrumb">
+            <a href="index.html">~/portfolio</a><span class="path-sep">/</span><span class="path-current">blog</span>
+        </div>
+        <div id="hero">
+            <h1>Tristan's Blog</h1>
+        </div>
+        <ul id="social-list">
+            <li>
+                <a href="https://github.com/teemcck" target="_blank" rel="noopener noreferrer">
+                    Github
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/tristan-mccaskill/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </li>
+        </ul>
+        <hr class="divider">
+    </header>
+    <h2>Canonical Huffman File Compressor</h2>
+    <div id="blog-body">
+        <div id="blog-content">
+            <!-- These paragraphs need to be formalized later. -->
+            <h3 id="huffman-overview">Overview of Huffman Coding</h3>
+
+            <!-- Commented out algorithm for now. -->
+            <p>
+                <!-- Introduction -->
+                Huffman Coding is a process commonly used for lossless data compression. In the context of compression,
+                Huffman Coding works by parsing symbols present in a data source and mapping them to variable-length
+                codes which it substitutes in an encoded output. More frequently occurring symbols are assigned shorter
+                codes, while less frequently occurring symbols are assigned longer codes, reducing the overall size of
+                the encoded data.
+            </p>
+            <p>
+                The term "symbols" is intentionally left abstract since different formats may define the units
+                being encoded differently and with varying degrees of complexity. For example, a simple
+                implementation may treat each byte of a file as a symbol.
+            </p>
+            <!-- <p>
+                To explain Huffman Coding, we will walk through a hypothetical compression algorithm that
+                uses it. For the following algorithm definition, let a symbol represent a single uppercase alphabetic
+                character: Define a function \(\mathrm{HuffCompress}(\text{input}, \text{output})\), where \(\text{input}\) is the
+                input data source
+                and \(\text{output}\) is the output data source. We start by parsing \(\text{input}\) and building a frequency
+                table, \(F_{\text{symb}}\), of every symbol A-Z.
+            </p>
+            $$
+            F_{\text{symb}} =
+            \begin{array}{c|c}
+            \text{Symbol} & \text{Count} \\
+            \hline
+            \text{A} & 3 \\
+            \text{B} & 2 \\
+            \text{C} & 2 \\
+            \vdots & \vdots \\
+            \text{Y} & 1 \\
+            \text{Z} & 0
+            \end{array}
+            $$
+            <p>
+                Using \(F_{\text{symb}}\), we are able to construct
+            <p>
+                Finally, \(\mathrm{HuffCompress}\) reads \(\text{input}\) a second time and writes the code for
+                each symbol to \(\text{output}\). The size of the encoded data is
+            </p>
+            $$
+            \sum_{s} F_{\text{symb}}(s) \cdot \ell(s)
+            $$
+            <p>
+                bits, where \(\ell(s)\) is the length of the code assigned to symbol \(s\).
+            </p> -->
+
+            <h3 id="canonical-huffman">What is Canonical Huffman Coding?</h3>
+            <p>
+                When compressing from a data source, it is important to include meta data to explicitly state or allow
+                inference to the "codebook" used
+                to compress the file. The codebook is responsible for storing which symbols map to which codes. For
+                Huffman Compression, this requires us to format a header in one of the following ways:
+            </p>
+            <ul>
+                <li>Store the entire structure of the binary tree so codes can be reconstructed during decompression.</li>
+                <li>Store the codes in order of all possible symbols, using a predefined nullcode symbol for symbols
+                    that do not occur.</li>
+            </ul>
+            <p>
+                Both of these methods of sourcing the codebook for decryption are fine for large files, but can become
+                costly for small files. When encrypted, small files have the potential of becoming larger if the size of
+                the header is greater then the original size of the file (which would be common for encoding a large
+                binary tree or array of codes).
+            </p>
+            <p>
+                Canonical Huffman is an adapation of conventional Huffman algorithms with the added step of
+                standardizing the codes. This added standardization step occurs after we have constructed the Huffman
+                Tree and have found the lengths of the codes, and before we build an indexable codebook.
+            </p>
+            <p>Canonical Huffman codes follow these rules:</p>
+            <ul>
+                <li>All codes of a shared length are assigned their values sequentially.</li>
+                <li>For codes of a shared length, order is determined by alphabetic value.</li>
+            </ul>
+
+            <h3 id="implementation">How is this implemented?</h3>
+            <p>
+                For the sake of this project being an educational delve into Huffman Coding, I define my symbols as
+                being ASCII bytes. Apart from being able to be representing by small types like uint8_t, the real
+                benefit of this selection of symbol is that there are \(2^8\) possibilities for symbols which keeps the data
+                structures used in this project relatively small. When building a binary tree, we constrain our total number of leaf nodes
+                to be less then \(2^8\). This is also the standard approach given in any textbook Huffman implementation
+            </p>
+            <h3 id="hello-world">Hello World in C</h3>
+            <p>This simple C program prints a greeting to the terminal.</p>
+            <pre class="line-numbers" tabindex="0" aria-label="Hello World C example"><code class="language-c">#include &lt;stdio.h&gt;
+            int main(void) {
+                printf("Hello, world!\n");
+                return 0;
+            }</code></pre>
+        </div>
+    </div>
+</body>
+
+</html>
