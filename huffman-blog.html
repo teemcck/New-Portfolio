@@ -8,14 +8,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.css">
     <link rel="stylesheet" href="css/blog.css">
     <script defer src="js/blog-nav.js"></script>
     <!-- Prism: core, C-like dependency, and C grammar. -->
     <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-clike.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-c.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script defer
+        src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script defer
+        src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
     <!-- Latex Support -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
@@ -53,57 +57,23 @@
     <div id="blog-body">
         <div id="blog-content">
             <!-- These paragraphs need to be formalized later. -->
-            <h3 id="huffman-overview">Overview of Huffman Coding</h3>
+            <h3>Overview of Huffman Coding</h3>
 
             <!-- Commented out algorithm for now. -->
             <p>
                 <!-- Introduction -->
-                Huffman Coding is a process commonly used for lossless data compression. In the context of compression,
-                Huffman Coding works by parsing symbols present in a data source and mapping them to variable-length
-                codes which it substitutes in an encoded output. More frequently occurring symbols are assigned shorter
-                codes, while less frequently occurring symbols are assigned longer codes, reducing the overall size of
-                the encoded data.
+                Huffman Coding is a lossless data compression technique that represents symbols using variable-length
+                codes. More frequently occurring symbols are assigned shorter codes, while less frequently occurring
+                symbols are assigned longer codes. By using shorter codes for common symbols, Huffman Coding can reduce
+                the overall size of the encoded data.
             </p>
             <p>
-                The term "symbols" is intentionally left abstract since different formats may define the units
-                being encoded differently and with varying degrees of complexity. For example, a simple
-                implementation may treat each byte of a file as a symbol.
+                Note that the term "symbol" here is intentionally abstract as the units being encoded depend on the data
+                format. For
+                example, a symbol could simply be a single byte in a file.
             </p>
-            <!-- <p>
-                To explain Huffman Coding, we will walk through a hypothetical compression algorithm that
-                uses it. For the following algorithm definition, let a symbol represent a single uppercase alphabetic
-                character: Define a function \(\mathrm{HuffCompress}(\text{input}, \text{output})\), where \(\text{input}\) is the
-                input data source
-                and \(\text{output}\) is the output data source. We start by parsing \(\text{input}\) and building a frequency
-                table, \(F_{\text{symb}}\), of every symbol A-Z.
-            </p>
-            $$
-            F_{\text{symb}} =
-            \begin{array}{c|c}
-            \text{Symbol} & \text{Count} \\
-            \hline
-            \text{A} & 3 \\
-            \text{B} & 2 \\
-            \text{C} & 2 \\
-            \vdots & \vdots \\
-            \text{Y} & 1 \\
-            \text{Z} & 0
-            \end{array}
-            $$
-            <p>
-                Using \(F_{\text{symb}}\), we are able to construct
-            <p>
-                Finally, \(\mathrm{HuffCompress}\) reads \(\text{input}\) a second time and writes the code for
-                each symbol to \(\text{output}\). The size of the encoded data is
-            </p>
-            $$
-            \sum_{s} F_{\text{symb}}(s) \cdot \ell(s)
-            $$
-            <p>
-                bits, where \(\ell(s)\) is the length of the code assigned to symbol \(s\).
-            </p> -->
 
-            <h3 id="canonical-huffman">What is Canonical Huffman Coding?</h3>
+            <h3>What is Canonical Huffman Coding?</h3>
             <p>
                 When compressing from a data source, it is important to include meta data to explicitly state or allow
                 inference to the "codebook" used
@@ -111,13 +81,16 @@
                 Huffman Compression, this requires us to format a header in one of the following ways:
             </p>
             <ul>
-                <li>Store the entire structure of the binary tree so codes can be reconstructed during decompression.</li>
+                <li>Store the entire structure of the binary tree so codes can be reconstructed during decompression.
+                </li>
                 <li>Store the codes in order of all possible symbols, using a predefined nullcode symbol for symbols
                     that do not occur.</li>
             </ul>
             <p>
-                Both of these methods of sourcing the codebook for decryption are fine for large files, but can become
-                costly for small files. When encrypted, small files have the potential of becoming larger if the size of
+                Both of these methods of sourcing the codebook for decompression are fine for large files, but can
+                become
+                costly for small files. When compressed, small files have the potential of becoming larger if the size
+                of
                 the header is greater then the original size of the file (which would be common for encoding a large
                 binary tree or array of codes).
             </p>
@@ -132,21 +105,147 @@
                 <li>For codes of a shared length, order is determined by alphabetic value.</li>
             </ul>
 
-            <h3 id="implementation">How is this implemented?</h3>
+            <h3>Algorithm Outline</h3>
+            <p>
+                This project implements a byte-oriented Huffman compressor and decompressor. It treats every input byte
+                as a symbol in the range 0-255.
+            </p>
+            <p>
+                The encoder counts how often each byte appears, builds a Huffman tree,
+                turns the tree depths into canonical codes, then writes a header and the encoded payload. The decoder
+                canon
+                reads the header, reconstructs those sameical codes, and uses them to recover the original bytes.
+            </p>
+            <p>
+                The command-line entry point is main.c. It accepts -e to encode or
+                -d to decode, followed by the input
+                file and target file respectively for both modes.
+            </p>
+            <p>
+                The encoding process collects the data from the file and passes it through a series of representations:
+            <ol>
+                <li>
+                    Counting Bytes: <code class="language-c">count_frequencies()</code> reads the input with
+                    fgetc. It uses an
+                    int for each result because fgetc must represent both every byte value and
+                    the special EOF value. Each byte's count goes into
+                    <code class="language-c">uint64_t frequencies[256]</code>. The total input size is stored as <code
+                        class="language-c">uint32_t</code>,
+                    which matches the four-byte
+                    size field in the file format.
+                    <pre class="line-numbers" data-remove-indent="true" tabindex="0" aria-label="Encoding example"><code class="language-c">
+                        int symbol;
+
+                        // Read bytes until EOF, counting each symbol and the total input size.
+                        while ((symbol = fgetc(input)) != EOF) {
+                            if (*total_symbols == UINT32_MAX) {
+                                return EXIT_FAILURE;
+                            }
+                            ++frequencies[symbol];
+                            ++(*total_symbols);
+                        }
+                    </code></pre>
+
+                </li>
+                <li>
+                    Build a Huffman tree: we are able to forward the collected frequencies to a new function that may
+                    construct a "Huffman" tree. Huffman trees are built strictly using a bottom-up approach. Start by
+                    inserting elements, sorted by frequency from least to greatest, into a minheap.
+                    <pre class="line-numbers" data-remove-indent="true" tabindex="0" aria-label="Encoding example"><code class="language-c">
+                        minheap heap = {0};
+                        // Leave the caller with no tree on failure or empty input.
+                        *root = NULL;
+
+                        // Insert one leaf for each symbol that occurs in the input.
+                        for (size_t symbol = 0; symbol < SYMBOL_COUNT; ++symbol) {
+                            if (frequencies[symbol] != 0) {
+                                // calloc initializes the child pointers to null on this platform.
+                                huffman_node *leaf = calloc(1, sizeof(*leaf));
+                                if (leaf == NULL) {
+                                    release_heap_trees(&heap);
+                                    return EXIT_FAILURE;
+                                }
+                                leaf->frequency = frequencies[symbol];
+                                leaf->symbol = (uint8_t)symbol;
+                                // At most 256 leaves are inserted into a 256-entry heap.
+                                heap_insert(&heap, leaf);
+                            }
+                        }
+                    </code></pre>
+
+                    After building your minheap, you can repeatedly combine the two least frequent elements into
+                    internal nodes and reinsert them back into the tree. Continue this process until there is one final
+                    node, which is your root node. In this representation, all of the leaf nodes of our Huffman tree
+                    correspond to individual symbols.
+                    <pre class="line-numbers" data-remove-indent="true" tabindex="0" aria-label="Encoding example"><code class="language-c">
+                        // Repeatedly combine the two least frequent trees into one parent.
+                        while (heap.size > 1) {
+                            // Allocate before removing children so failure cleanup can find them.
+                            huffman_node *parent = calloc(1, sizeof(*parent));
+                            if (parent == NULL) {
+                                release_heap_trees(&heap);
+                                return EXIT_FAILURE;
+                            }
+                            parent->left = heap_pop_top(&heap);
+                            parent->right = heap_pop_top(&heap);
+                            // Internal nodes represent the combined frequency of their children.
+                            parent->frequency = parent->left->frequency + parent->right->frequency;
+                            heap_insert(&heap, parent);
+                        }
+                    </code></pre>
+
+                </li>
+                <li>
+                    Get code lengths: build_code_lengths walks the tree. A leaf's depth becomes that byte's
+                    code length.
+                    A one-symbol input is assigned a one-bit code so it still has a usable code. The tree is freed after
+                    its lengths have been collected.
+                </li>
+                <li>
+                    Limit lengths and create canonical codes: limit_code_lengths caps lengths at
+                    MAX_CODE_LEN (15) while preserving a valid prefix code.
+                    validate_code_lengths checks the result and counts codes at each length. The encoder
+                    then sorts (symbol, length) pairs by length and symbol value, and
+                    build_canonical_codes assigns the bit patterns. Canonical codes avoid storing the tree
+                    itself: both
+                    sides can derive the same codes from the lengths and ordering.
+                </li>
+                <li>
+                    Write the header and payload: The encoder rewinds the input to its starting position, writes the
+                    code lengths and original byte count, then reads each input byte again and looks up its code in
+                    huffman_code codebook[256]. bit_writer emits the code bits and pads the
+                    final output byte with zeros
+                    if needed.
+                </li>
+            </ol>
+            </p>
+
+            <h3>Hello World in C</h3>
+            <p>This simple C program prints a greeting to the terminal.</p>
+            <pre class="line-numbers" data-remove-indent="true" tabindex="0" aria-label="Hello World C example"><code class="language-c">
+                #include &lt;stdio.h&gt;
+                int main(void) {
+                    printf("Hello, world!\n");
+                    return 0;
+                }
+            </code></pre>
+
+            <!-- Elaborate more here and outline algorithm -->
+            <!-- After outlining, walk through each point giving implementation details. -->
+            <!-- - Give code snippets and things here to help explain. -->
+            <!-- Optional compression diagnostics. -->
+            <!-- Give limitations of the project. -->
+
+            <!-- <h3 id="implementation">How is this implemented?</h3>
             <p>
                 For the sake of this project being an educational delve into Huffman Coding, I define my symbols as
-                being ASCII bytes. Apart from being able to be representing by small types like uint8_t, the real
-                benefit of this selection of symbol is that there are \(2^8\) possibilities for symbols which keeps the data
-                structures used in this project relatively small. When building a binary tree, we constrain our total number of leaf nodes
+                being bytes. Apart from being able to be representing by small types like uint8_t, the real
+                benefit of this selection of symbol is that there are \(2^8\) possibilities for symbols which keeps the
+                data
+                structures used in this project relatively small. When building a binary tree, we constrain our total
+                number of leaf nodes
                 to be less then \(2^8\). This is also the standard approach given in any textbook Huffman implementation
-            </p>
-            <h3 id="hello-world">Hello World in C</h3>
-            <p>This simple C program prints a greeting to the terminal.</p>
-            <pre class="line-numbers" tabindex="0" aria-label="Hello World C example"><code class="language-c">#include &lt;stdio.h&gt;
-            int main(void) {
-                printf("Hello, world!\n");
-                return 0;
-            }</code></pre>
+            </p> -->
         </div>
     </div>
 </body>

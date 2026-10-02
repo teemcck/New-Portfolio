@@ -169,6 +169,13 @@ header {
     margin-top: 0.5rem;
 }
 
+#blog-content p code,
+#blog-content li code {
+    font-family: var(--font-fira);
+    font-size: 0.9em;
+    color: var(--light-gray);
+}
+
 /* Blue-based palette with muted syntax accents for Prism code blocks */
 #blog-content pre {
     margin: 1rem 0;

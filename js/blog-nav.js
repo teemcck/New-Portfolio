@@ -1,5 +1,5 @@
 // Include with `defer` on entries using css/blog.css and #blog-content.
-// Each h3 becomes a contents link; existing heading IDs are preserved.
+// Each h3 gets a sequential ID and a matching contents link.
 (() => {
     const content = document.getElementById('blog-content');
     if (!content || document.getElementById('section-nav')) return;
@@ -22,18 +22,18 @@
 
     const links = document.createElement('ul');
     links.id = 'section-links';
-    headings.forEach((heading) => {
-        if (!heading.id) {
-            const base = heading.textContent.trim().toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
-            let id = base;
-            let suffix = 2;
-            while (document.getElementById(id)) id = `${base}-${suffix++}`;
-            heading.id = id;
+    headings.forEach((heading, index) => {
+        // Sequential IDs keep generation simple; skip any ID already used elsewhere.
+        let id = `section-${index + 1}`;
+        let suffix = index + 1;
+        while (document.getElementById(id) && document.getElementById(id) !== heading) {
+            id = `section-${++suffix}`;
         }
+        heading.id = id;
+
         const item = document.createElement('li');
         const link = document.createElement('a');
-        link.href = `#${encodeURIComponent(heading.id)}`;
+        link.href = `#${heading.id}`;
         link.textContent = heading.textContent.trim();
         item.append(link);
         links.append(item);
