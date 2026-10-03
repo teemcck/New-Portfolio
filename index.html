@@ -15,20 +15,8 @@
 <body>
     <header>
         <ul id="header-content">
-            <li id="ascii-logo">
-                <pre>
-   ___           ___     
-  /\  \         /\__\    
-  \:\  \       /::|  |   
-   \:\  \     /:|:|  |   
-   /::\  \   /:/|:|__|__ 
-  /:/\:\__\ /:/ |::::\__\
- /:/  \/__/ \/__/~~/:/  /
-/:/  /            /:/  / 
-\/__/            /:/  /  
-                /:/  /   
-                \/__/
-            </pre>
+            <li id="profile-picture">
+                <img src="images/profile/tristan.png" alt="Tristan McCaskill">
             </li>
             <li id="nav-bar">
                 <ul id="hero-list">
@@ -58,6 +46,7 @@
                             <div id="nav-list">
                                 <button data-section="about">[About]</button>
                                 <button data-section="projects">[Projects]</button>
+                                <button data-section="game-jams">[Game Jams]</button>
                                 <button data-section="blog">[Blog]</button>
                                 <!-- <button data-section="resume">[Resume]</button> -->
                             </div>
@@ -141,7 +130,8 @@
                             <p>Makefile</p>
                         </div>
                     </div>
-                    <img class="blog-thumbnail" alt="Example Project" loading="lazy" src="images/default-thumbnail.png">
+                    <img class="blog-thumbnail" alt="Example Project" loading="lazy"
+                        src="images/thumbnails/default-thumbnail.png">
                 </div>
             </a>
             <div class="blog-card">
@@ -166,7 +156,8 @@
                         <p>OpenGL</p>
                     </div>
                 </div>
-                <img class="blog-thumbnail" alt="Example Project" loading="lazy" src="images/default-thumbnail.png">
+                <img class="blog-thumbnail" alt="Example Project" loading="lazy"
+                    src="images/thumbnails/default-thumbnail.png">
             </div>
         </div>
     </section>
@@ -174,7 +165,8 @@
         <h2>Projects</h2>
         <div id="project-display">
             <div class="project-card">
-                <img class="project-thumbnail" alt="Example Project" loading="lazy" src="images/default-thumbnail.png">
+                <img class="project-thumbnail" alt="Example Project" loading="lazy"
+                    src="images/thumbnails/default-thumbnail.png">
                 <ul class="project-info">
                     <li>
                         <h3>Canonical Huffman File Compressor</h3>
@@ -204,7 +196,8 @@
                 </ul>
             </div>
             <div class="project-card">
-                <img class="project-thumbnail" alt="Example Project" loading="lazy" src="images/default-thumbnail.png">
+                <img class="project-thumbnail" alt="Example Project" loading="lazy"
+                    src="images/thumbnails/default-thumbnail.png">
                 <ul class="project-info">
                     <li>
                         <h3>Project Title 2</h3>
@@ -231,6 +224,78 @@
                         </ul>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </section>
+    <section id="game-jams">
+        <div class="subsection">
+            <h2>What are Game Jams?</h2>
+            <p>
+                Game jams are short, team events where participants make a game from scratch, often around a
+                shared theme or creative constraint (think of a hackathon but for game development). The games below are
+                projects I've been the main programmer for during game jams. All were made in Unity
+                and finished in under 48 hours.
+            </p>
+        </div>
+        <h2>Game Jam Submissions</h2>
+        <div id="game-jam-display">
+            <div class="game-jam-card">
+                <img class="game-jam-thumbnail" alt="Protect Your Data thumbnail" loading="lazy"
+                    src="images/thumbnails/protect-your-data.png">
+                <div class="game-jam-info">
+                    <h3>Protect Your Data</h3>
+                    <p class="game-jam-description">A top-down, wave-based roguelike shooter featuring three bosses,
+                        made for the Michigan Game Developers Conference Game Jam. It won first place and a $750 prize
+                        sponsored by <a href="https://bluebirdstudios.org/home" target="_blank"
+                            rel="noopener noreferrer">Bluebird Studios</a>.</p>
+                    <ul class="project-links">
+                        <li><a href="https://teemac8.itch.io/protect-your-data" target="_blank"
+                                rel="noopener noreferrer">View itch.io</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="game-jam-card">
+                <img class="game-jam-thumbnail" alt="Block Party thumbnail" loading="lazy"
+                    src="images/thumbnails/block-party.png">
+                <div class="game-jam-info">
+                    <h3>Block Party</h3>
+                    <p class="game-jam-description">A rhythm game inspired by Friday Night Funkin', which placed 3rd in
+                        the
+                        2024 WolverineSoft Pumpkin Jam. Polishing for this game continued ittermitently
+                        after the jam concluded.</p>
+                    <ul class="project-links">
+                        <li><a href="https://jegjegjeg.itch.io/block-party-official" target="_blank"
+                                rel="noopener noreferrer">View itch.io</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="game-jam-card">
+                <img class="game-jam-thumbnail" alt="Bubble Casino thumbnail" loading="lazy"
+                    src="images/thumbnails/bubble-casino.png">
+                <div class="game-jam-info">
+                    <h3>Bubble Casino</h3>
+                    <p class="game-jam-description">A blackjack simulator with the goal of winning enough money to
+                        afford your wedding. This parody game was made for the 2025 Global Game Jam theme, “Bubble.”</p>
+                    <ul class="project-links">
+                        <li><a href="https://teambubblecasino.itch.io/the-bubble-casino" target="_blank"
+                                rel="noopener noreferrer">View itch.io</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="game-jam-card">
+                <img class="game-jam-thumbnail" alt="Don't Flock Up thumbnail" loading="lazy"
+                    src="images/thumbnails/default-thumbnail.png">
+                <div class="game-jam-info">
+                    <h3>Don't Flock Up</h3>
+                    <p class="game-jam-description">A Thanksgiving-themed asymmetrical PvP infinite runner, which placed
+                        3rd
+                        in
+                        the 2024 WolverineSoft Turkey Jam. Minimal 3D art was also done by me.</p>
+                    <ul class="project-links">
+                        <li><a href="https://teemac8.itch.io/dont-flock-up" target="_blank"
+                                rel="noopener noreferrer">View itch.io</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

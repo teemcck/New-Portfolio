@@ -105,14 +105,25 @@ header {
     padding: 0px 4px
 }
 
-#ascii-logo {
-    font-size: 0.5rem;
-    margin: 6px 8px
+#profile-picture {
+    width: 108px;
+    height: 108px;
+    flex: 0 0 108px;
+    margin: 6px 8px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+#profile-picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 #nav-bar {
     width: 100%;
-    padding: 14px 8px;
+    padding: 20px 8px;
 }
 
 #hero-container {
@@ -156,6 +167,7 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     margin: 3px 0px;
+    padding: 2px 0;
     gap: 3px
 }
 
@@ -279,6 +291,72 @@ section a:hover {
     text-decoration: underline
 }
 
+/* Game Jam Tab */
+
+#game-jam-display {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 12px 0;
+    gap: 12px;
+}
+
+.game-jam-card {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    background-color: var(--black);
+    border: var(--border-width-small) solid var(--gray);
+    border-radius: var(--radius-small);
+    padding: 12px;
+    text-decoration: none;
+}
+
+.game-jam-card:hover {
+    border-color: var(--gray);
+    background-color: var(--black);
+    color: inherit;
+}
+
+.game-jam-card:focus-visible {
+    outline: 2px solid var(--light-blue);
+    outline-offset: 3px;
+}
+
+.game-jam-thumbnail {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-small);
+}
+
+.game-jam-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 12px;
+    gap: 8px;
+}
+
+.game-jam-info h3 {
+    color: var(--light-blue);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.game-jam-description {
+    color: var(--light-gray);
+    font-size: 0.9rem;
+    font-weight: 450;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.game-jam-description a {
+    text-decoration: underline;
+}
+
 /* Blog */
 
 /* For the entries on the left, tags on the right */
@@ -382,14 +460,20 @@ section a:hover {
     gap: 6px;
   }
 
-  #ascii-logo {
-    font-size: 0.6rem;
+  #profile-picture {
+    width: 120px;
+    height: 120px;
+    flex-basis: 120px;
     margin: 6px 12px
   }
 
   /* Sections */
   #project-display {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  #game-jam-display {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   #blog-display {
@@ -413,5 +497,11 @@ section a:hover {
     height: auto;
     padding: 0;
     flex-shrink: 0;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #game-jam-display {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
